@@ -7,8 +7,9 @@ import type { MDXWithSlug } from "src/types";
 export type Props = MDXWithSlug;
 import "@styles/mdx.scss";
 const { Content, frontmatter } = Astro.props;
-import { getSandpackCssText } from "@codesandbox/sandpack-react";
 import SkipToMain from "@components/SkipToMain.astro";
+import sandpackPkg from "@codesandbox/sandpack-react";
+const { getSandpackCssText } = sandpackPkg;
 const cssTextOutput = getSandpackCssText();
 ---
 

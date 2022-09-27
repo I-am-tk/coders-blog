@@ -1,10 +1,7 @@
 import React from "react";
-import {
-  SandpackProvider,
-  SandpackPreview,
-  SandpackCodeEditor,
-  useSandpack,
-} from "@codesandbox/sandpack-react";
+
+import { SandpackProvider, SandpackPreview, SandpackCodeEditor } from "@codesandbox/sandpack-react";
+
 // @ts-ignore
 import { githubLight } from "@codesandbox/sandpack-themes";
 
