@@ -8,9 +8,9 @@ export type Props = MDXWithSlug;
 import "@styles/mdx.scss";
 const { Content, frontmatter } = Astro.props;
 import SkipToMain from "@components/SkipToMain.astro";
-import sandpackPkg from "@codesandbox/sandpack-react";
-const { getSandpackCssText } = sandpackPkg;
-const cssTextOutput = getSandpackCssText();
+// import sandpackPkg from "@codesandbox/sandpack-react";
+// const { getSandpackCssText } = sandpackPkg;
+// const cssTextOutput = getSandpackCssText();
 ---
 
 <style lang="scss">
@@ -43,9 +43,10 @@ const cssTextOutput = getSandpackCssText();
   }
 </style>
 
-<style id="sandpack" is:global set:html={cssTextOutput}>
+<!-- Will add it after fixing sandpack errors -->
+<!-- <style id="sandpack" is:global set:html={cssTextOutput}>
 
-</style>
+</style> -->
 <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 
 <body>
