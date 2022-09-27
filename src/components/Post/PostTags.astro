@@ -1,0 +1,42 @@
+---
+import postTags from "src/content/posts/post-tags";
+---
+
+<section>
+  <h2 class="section-title">Tags</h2>
+  <div class="tags">
+    {
+      postTags.map(({ tag }) => (
+        <a href={`/${tag.toLocaleLowerCase()}/1`} class="tag">
+          {tag}
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--size-2);
+  }
+
+  .tag {
+    background: var(--gray-0);
+    padding: var(--size-2) var(--size-3);
+    border-radius: var(--radius-2);
+    text-decoration: none;
+    color: inherit;
+    font-size: var(--font-size-2);
+    background-color: var(--indigo-0);
+    border: 1px solid transparent;
+  }
+
+  .tag:hover,
+  .tag:focus {
+    outline: 1px solid var(--gray-4);
+    background-color: var(--indigo-7);
+    color: var(--gray-0);
+  }
+</style>

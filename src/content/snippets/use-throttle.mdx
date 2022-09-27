@@ -1,0 +1,17 @@
+---
+title: "Throttle"
+description: "Throttle on the input"
+publishedDate: "August 08 2022"
+tags: ["JS", "React"]
+---
+
+```js
+function throttle(fn, interval = 1) {
+  if (id) {
+    clearTimeout(id);
+  }
+  const id = setTimeout(() => {
+    fn();
+  }, interval * 1000);
+}
+```

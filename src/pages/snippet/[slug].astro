@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import MDXLayout from "@layouts/MDXLayout.astro";
+import type { MDXWithSlug } from "src/types";
+import { getMDXByType } from "src/utility/mdx-util.astro";
+
+export async function getStaticPaths() {
+  const snippets = await getMDXByType("snippet");
+  return snippets.map((snippet) => ({
+    params: { slug: snippet.frontmatter.slug },
+    props: { ...snippet },
+  }));
+}
+
+export type Props = MDXWithSlug;
+
+const props = Astro.props;
+---
+
+<MDXLayout {...props} />

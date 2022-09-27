@@ -1,0 +1,21 @@
+---
+import PostPage from "@components/Post/PostPage.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import type { GetStaticPaths, Page } from "astro";
+import type { MDXWithSlug } from "src/types";
+import { getMDXByType } from "src/utility/mdx-util.astro";
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const posts = await getMDXByType("post");
+
+  return paginate(posts, { pageSize: 2 });
+};
+
+export type Props = { page: Page<MDXWithSlug> };
+
+const { page } = Astro.props;
+---
+
+<BaseLayout>
+  <PostPage page={page} pageTitle="All Posts" />
+</BaseLayout>

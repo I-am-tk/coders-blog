@@ -1,0 +1,74 @@
+---
+import type { FrontMatterWithSlug } from "src/types";
+export type Props = { frontmatters: FrontMatterWithSlug[] };
+const { frontmatters } = Astro.props;
+---
+
+<section>
+  <h1 class="section-title">Popular Posts</h1>
+  <div class="popular-posts">
+    {
+      frontmatters.map((frontmatter) => (
+        <a href={`/post/${frontmatter.slug}`}>
+          <span class="arrow"> &rarr;</span>
+          <span>{frontmatter.title}</span>
+        </a>
+      ))
+    }
+  </div>
+  <a class="show-all" href={`/post/page/1`}>Show All Posts</a>
+</section>
+
+<style>
+  .popular-posts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-1);
+  }
+
+  a {
+    font-size: var(--font-size-2);
+    text-decoration: none;
+    font-weight: var(--font-weight-7);
+    color: var(--gray-8);
+    display: flex;
+    gap: var(--size-2);
+    border: 1px solid transparent;
+    padding-block: var(--size-2);
+    padding-inline: var(--size-3);
+    margin-left: calc(var(--size-3) * -1);
+    border-radius: var(--radius-2);
+    outline: none;
+    border: 1px solid transparent;
+    width: fit-content;
+  }
+
+  .arrow {
+    transition: transform 0.3s;
+  }
+
+  a:hover,
+  a:focus {
+    background-color: var(--indigo-0);
+    color: var(--blue-9);
+    border: 1px solid var(--gray-4);
+  }
+
+  a:hover .arrow,
+  a:focus .arrow {
+    transform: translateX(4px);
+  }
+
+  .show-all {
+    margin-top: var(--size-2);
+    border: 1px solid var(--gray-4);
+    padding-block: var(--size-2);
+    padding-inline: var(--size-3);
+  }
+  .show-all:hover,
+  .show-all:focus {
+    background-color: var(--indigo-0);
+    color: var(--blue-9);
+    border: 1px solid var(--gray-4);
+  }
+</style>

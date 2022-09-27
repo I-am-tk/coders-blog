@@ -1,0 +1,42 @@
+---
+import Banner from "@components/Banner.astro";
+import LatestPosts from "@components/Post/LatestPosts.astro";
+import PopularPosts from "@components/Post/PopularPosts.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PostTags from "@components/Post/PostTags.astro";
+import { getMDXByType } from "src/utility/mdx-util.astro";
+
+const posts = await getMDXByType("post");
+const latestPostFrontMatters = posts.slice(0, 6).map((post) => post.frontmatter);
+const popularPostFrontMatters = latestPostFrontMatters;
+---
+
+<style lang="scss">
+  .main-content {
+    margin-top: 84px;
+    display: grid;
+    gap: 24px;
+    @media (min-width: 968px) {
+      grid-template-columns: 4fr 2fr;
+      gap: var(--size-8);
+    }
+    margin-bottom: var(--size-4);
+  }
+
+  .side-section {
+    display: flex;
+    flex-direction: column;
+    gap: 84px;
+  }
+</style>
+
+<BaseLayout>
+  <Banner />
+  <div class="main-content container">
+    <LatestPosts frontmatters={latestPostFrontMatters} />
+    <div class="side-section">
+      <PostTags />
+      <PopularPosts frontmatters={popularPostFrontMatters} />
+    </div>
+  </div>
+</BaseLayout>

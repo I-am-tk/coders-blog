@@ -1,0 +1,30 @@
+---
+---
+
+<a href="#main"> Skip to Main</a>
+
+<style>
+  a {
+    color: #1e1e1e;
+    background-color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+    padding: 4px 12px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: fixed;
+    top: -150%;
+    left: -100%;
+    z-index: 100;
+  }
+
+  a:focus {
+    top: 20px;
+    left: 20px;
+  }
+
+  a:where(:not(:active, :disabled)):hover {
+    color: #000e19;
+  }
+</style>

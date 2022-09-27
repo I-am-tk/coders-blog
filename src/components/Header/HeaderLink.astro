@@ -1,0 +1,39 @@
+---
+export type Props = astroHTML.JSX.AnchorHTMLAttributes;
+
+const { href, class: className, ...props } = Astro.props;
+const isActive = href === Astro.url.pathname;
+---
+
+<a href={href} class:list={[className, { active: isActive }]} {...props}>
+  <slot />
+</a>
+
+<style>
+  a {
+    color: var(--gray-7);
+    text-decoration: none;
+    font-size: var(--font-size-2);
+    transition: color 0.3s;
+    padding: var(--size-1) var(--size-2);
+    border: 1px solid transparent;
+    border-radius: var(--radius-2);
+  }
+
+  a.active {
+    font-weight: 700;
+    color: var(--gray-8);
+    font-size: var(--font-size-2);
+  }
+
+  a:where(:not(.active)):where(:hover) {
+    color: var(--gray-8);
+    text-decoration: underline;
+  }
+
+  a:focus-within {
+    background-color: var(--gray-0);
+    color: var(--gray-8);
+    text-decoration: none;
+  }
+</style>

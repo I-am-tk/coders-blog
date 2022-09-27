@@ -1,0 +1,33 @@
+---
+import BaseHead from "@components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "config";
+import "src/styles/global.scss";
+import Header from "@components/Header/Header.astro";
+import Footer from "@components/Footer/Footer.astro";
+import SkipToMain from "@components/SkipToMain.astro";
+---
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    flex-grow: 1;
+  }
+  body > :global(header),
+  body > :global(footer) {
+    flex-shrink: 0;
+  }
+</style>
+
+<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+
+<body>
+  <SkipToMain />
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+</body>

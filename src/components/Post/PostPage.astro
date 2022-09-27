@@ -1,0 +1,84 @@
+---
+import PageHeader from "@components/PageHeader.astro";
+import type { Page } from "astro";
+import type { MDXWithSlug } from "src/types";
+import PostArticle from "./PostArticle.astro";
+
+export type Props = { page: Page<MDXWithSlug>; pageTitle: string };
+
+const { page, pageTitle } = Astro.props;
+---
+
+<style lang="scss">
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--size-6);
+    & > li + li {
+      margin-top: var(--size-4);
+    }
+    // min-width: var(--size-content-2);
+    // & > li {
+    //   flex-basis: 33ch;
+    //   flex-grow: 1;
+    // }
+  }
+  .prev,
+  .next {
+    border: 1px solid var(--gray-4);
+    padding: var(--size-2) var(--size-3);
+    border-radius: var(--radius-2);
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    width: 120px;
+    text-align: center;
+  }
+  .next {
+    margin-left: auto;
+  }
+  .page-nav {
+    display: flex;
+    margin-top: var(--size-6);
+  }
+  .page-number {
+    text-align: center;
+    flex-grow: 1;
+  }
+  a.disabled {
+    border-color: var(--gray-2);
+    color: var(--gray-5);
+  }
+</style>
+
+<section>
+  <PageHeader title={pageTitle} />
+  <div class="container">
+    <ul>
+      {
+        page.data.map(({ frontmatter }) => (
+          <li>
+            <PostArticle frontmatter={frontmatter} />
+          </li>
+        ))
+      }
+    </ul>
+    {
+      page.lastPage > 1 && (
+        <div class="page-nav">
+          <a href={page.url.prev} class:list={["prev", { disabled: page.url.prev === undefined }]}>
+            Previous
+          </a>
+
+          <p class="page-number">
+            {page.currentPage}/{page.lastPage}
+          </p>
+
+          <a href={page.url.next} class:list={["next", { disabled: page.url.next === undefined }]}>
+            Next
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>

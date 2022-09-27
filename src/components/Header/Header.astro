@@ -1,0 +1,32 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "config";
+---
+
+<style>
+  header {
+    height: var(--size-8);
+    display: flex;
+    align-items: center;
+    background: var(--indigo-1);
+  }
+
+  nav {
+    display: flex;
+    width: 100%;
+    margin-left: calc(var(--size-2) * -1);
+    gap: var(--size-2);
+  }
+</style>
+
+<header>
+  <div class="container">
+    <nav>
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/post/page/1">Post</HeaderLink>
+      <HeaderLink href="/snippet/page/1">Snippet</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+      <HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
+    </nav>
+  </div>
+</header>

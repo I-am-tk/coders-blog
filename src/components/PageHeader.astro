@@ -1,0 +1,21 @@
+---
+export interface Props {
+  title: string;
+  wrapperClass?: string;
+}
+const { title, wrapperClass = "container" } = Astro.props;
+---
+
+<style>
+  header {
+    background: var(--indigo-1);
+    padding-top: var(--size-10);
+    padding-bottom: var(--size-4);
+  }
+</style>
+
+<header>
+  <div class={wrapperClass}>
+    <h1 class="section-title">{title}</h1>
+  </div>
+</header>

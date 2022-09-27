@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getMDXByType } from "src/utility/mdx-util.astro";
+import postTags from "src/content/posts/post-tags";
+import type { MDXWithSlug } from "src/types";
+import type { GetStaticPaths, Page } from "astro";
+import PostPage from "@components/Post/PostPage.astro";
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const posts = await getMDXByType("post");
+  return postTags.map(({ tag, title: tagTitle }) => {
+    const filteredPosts: MDXWithSlug[] = posts.filter((post) => {
+      if (!post.frontmatter.tags) return false;
+      const regex = new RegExp(post.frontmatter.tags.join("|"), "i");
+      return regex.test(tag);
+    });
+    return paginate(filteredPosts, {
+      params: { tag: tag.toLowerCase() },
+      pageSize: 1,
+    });
+  });
+};
+
+export type Props = { page: Page<MDXWithSlug> };
+const { page } = Astro.props;
+const pageTitle = Astro.params.tag as string;
+---
+
+<BaseLayout>
+  <PostPage page={page} pageTitle={pageTitle} />
+</BaseLayout>

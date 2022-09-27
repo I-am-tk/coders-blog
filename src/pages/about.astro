@@ -1,0 +1,12 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import MDXLayout from "@layouts/MDXLayout.astro";
+import type { MDXWithSlug } from "src/types";
+import { getMDXByType } from "src/utility/mdx-util.astro";
+
+const [aboutMe] = await getMDXByType("about");
+
+const props = aboutMe;
+---
+
+<MDXLayout {...props} />

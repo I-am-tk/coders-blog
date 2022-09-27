@@ -1,0 +1,73 @@
+---
+import type { FrontMatterWithSlug } from "src/types";
+
+export type Props = { frontmatter: FrontMatterWithSlug };
+const { frontmatter } = Astro.props;
+---
+
+<a href={`/snippet/${frontmatter.slug}`}>
+  <article>
+    <h3>{frontmatter.title}</h3>
+    <p>{frontmatter.description}</p>
+  </article>
+</a>
+
+<style>
+  a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--blue-4);
+    border-radius: var(--radius-2);
+    padding-block: var(--size-3);
+    padding-inline: var(--size-4);
+  }
+
+  a:hover,
+  a:focus {
+    border-color: var(--blue-6);
+    background-color: var(--blue-1);
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+  }
+
+  h3 {
+    font-size: var(--font-size-4);
+    font-weight: var(--font-weight-5);
+    transition: 0.3s;
+    margin-bottom: var(--size-2);
+    color: var(--gray-8);
+  }
+
+  a:hover h3 {
+    color: var(--gray-9);
+  }
+
+  p {
+    font-size: var(--font-size-2);
+    font-weight: 400;
+    color: var(--gray-8);
+    max-width: var(--size-content-3);
+  }
+
+  h3 + p {
+    margin-bottom: var(--size-2);
+  }
+
+  .read-more {
+    font-weight: var(--font-weight-5);
+    color: var(--gray-8);
+    font-size: 16px;
+  }
+
+  a:hover .read-more {
+    transition: 0.3s;
+    color: var(--blue-7);
+  }
+</style>

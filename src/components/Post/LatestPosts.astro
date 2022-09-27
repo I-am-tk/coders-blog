@@ -1,0 +1,27 @@
+---
+import type { FrontMatterWithSlug } from "src/types";
+import PostArticle from "./PostArticle.astro";
+export type Props = { frontmatters: FrontMatterWithSlug[] };
+const { frontmatters } = Astro.props;
+---
+
+<section>
+  <div>
+    <h2 class="section-title">Latest Posts</h2>
+    <div class="posts">
+      {
+        frontmatters.map((frontmatter) => {
+          return <PostArticle frontmatter={frontmatter} />;
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-2);
+  }
+</style>

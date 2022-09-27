@@ -1,0 +1,54 @@
+---
+import CodeImage from "../assets/code.png";
+---
+
+<div class="banner">
+  <div class="banner-wrapper">
+    <div class="container">
+      <div>
+        <h1 class="heading">
+          <span class="heading-intro">Hello, I'm Tikeswar Naik</span>
+          Front-End Developer
+        </h1>
+        <p class="banner-text">
+          I love bringing desing onto web. I like working on the front-end of the web. This is my
+          site, Coder's Blog, where I blog and share whatever side projects I've been working on.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .banner-wrapper {
+    background: var(--indigo-1);
+    padding-block-start: var(--size-10);
+    padding-block-end: var(--size-8);
+  }
+
+  .heading {
+    color: var(--gray-9);
+    font-weight: var(--font-weight-7);
+    font-size: var(--font-size-5);
+    line-height: var(--font-lineheight-0);
+    @media (min-width: 481px) {
+      font-size: var(--font-size-6);
+    }
+  }
+
+  .heading-intro {
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-4);
+    display: block;
+    color: var(--gray-8);
+    margin-bottom: var(--size-2);
+  }
+
+  .banner-text {
+    font-size: var(--font-size-3);
+    font-weight: var(--font-size-4);
+    max-width: var(--size-content-3);
+    color: var(--gray-8);
+    margin-top: var(--size-4);
+  }
+</style>
