@@ -20,38 +20,39 @@ import SkipToMain from "@components/SkipToMain.astro";
 
 </style> -->
 
+<!DOCTYPE html>
 <html>
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  <style lang="scss">
-    .mdx-wrapper {
-      margin-top: var(--size-8);
-      font-size: var(--font-size-3);
-      color: var(--gray-8);
-      margin-inline: auto;
-      padding-bottom: var(--size-10);
-      /* margin-inline: auto; */
-      max-width: var(--size-content-3);
-    }
-  
-    header {
-      padding-block: var(--size-2);
-      background-color: var(--indigo-1);
-    }
-    .back {
-      border: 1px solid transparent;
-      font-size: var(--font-size-2);
-      padding: var(--size-1) var(--size-3);
-      border-radius: var(--radius-2);
-      color: var(--gray-7);
-      background-color: transparent;
-      &:hover,
-      &:focus {
-        text-decoration: underline;
+    <style lang="scss">
+      .mdx-wrapper {
+        margin-top: var(--size-8);
+        font-size: var(--font-size-3);
+        color: var(--gray-8);
+        margin-inline: auto;
+        padding-bottom: var(--size-10);
+        /* margin-inline: auto; */
+        max-width: var(--size-content-3);
       }
-      cursor: pointer;
-    }
-  </style>
+    
+      header {
+        padding-block: var(--size-2);
+        background-color: var(--indigo-1);
+      }
+      .back {
+        border: 1px solid transparent;
+        font-size: var(--font-size-2);
+        padding: var(--size-1) var(--size-3);
+        border-radius: var(--radius-2);
+        color: var(--gray-7);
+        background-color: transparent;
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <SkipToMain />

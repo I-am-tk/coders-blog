@@ -9,23 +9,23 @@ import SkipToMain from "@components/SkipToMain.astro";
 
 
 
-
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  <style lang="scss" is:global>
-    body {
-      display: flex;
-      flex-direction: column;
-    }
-    main {
-      flex-grow: 1;
-    }
-    body > header,
-    body > footer {
-      flex-shrink: 0;
-    }
-  </style>
+    <style lang="scss" is:global>
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      main {
+        flex-grow: 1;
+      }
+      body > header,
+      body > footer {
+        flex-shrink: 0;
+      }
+    </style>
   </head>
   <body>
     <SkipToMain />
@@ -34,5 +34,5 @@ import SkipToMain from "@components/SkipToMain.astro";
     <slot />
   </main>
   <Footer />
-</body>
+  </body>
 </html>
