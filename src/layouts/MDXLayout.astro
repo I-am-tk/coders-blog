@@ -2,10 +2,10 @@
 import BaseHead from "@components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "config";
 import "src/styles/global.scss";
+import "@styles/mdx.scss";
 import PageHeader from "@components/PageHeader.astro";
 import type { MDXWithSlug } from "src/types";
 export type Props = MDXWithSlug;
-import "@styles/mdx.scss";
 const { Content, frontmatter } = Astro.props;
 import SkipToMain from "@components/SkipToMain.astro";
 // import sandpackPkg from "@codesandbox/sandpack-react";
@@ -13,64 +13,73 @@ import SkipToMain from "@components/SkipToMain.astro";
 // const cssTextOutput = getSandpackCssText();
 ---
 
-<style lang="scss">
-  .mdx-wrapper {
-    margin-top: var(--size-8);
-    font-size: var(--font-size-3);
-    color: var(--gray-8);
-    margin-inline: auto;
-    padding-bottom: var(--size-10);
-    /* margin-inline: auto; */
-    max-width: var(--size-content-3);
-  }
 
-  header {
-    padding-block: var(--size-2);
-    background-color: var(--indigo-1);
-  }
-  .back {
-    border: 1px solid transparent;
-    font-size: var(--font-size-2);
-    padding: var(--size-1) var(--size-3);
-    border-radius: var(--radius-2);
-    color: var(--gray-7);
-    background-color: transparent;
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-    cursor: pointer;
-  }
-</style>
 
 <!-- Will add it after fixing sandpack errors -->
 <!-- <style id="sandpack" is:global set:html={cssTextOutput}>
 
 </style> -->
-<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 
-<body>
-  <SkipToMain />
-  <header>
-    <div class="mdx-page-container">
-      <a class="back">&larr; Go Back</a>
-    </div>
-  </header>
-  <main id="main">
-    <article>
-      <PageHeader wrapperClass={"mdx-page-container"} title={frontmatter.title} />
-      <div class="mdx-wrapper mdx">
-        <Content />
+<html>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  <style lang="scss">
+    .mdx-wrapper {
+      margin-top: var(--size-8);
+      font-size: var(--font-size-3);
+      color: var(--gray-8);
+      margin-inline: auto;
+      padding-bottom: var(--size-10);
+      /* margin-inline: auto; */
+      max-width: var(--size-content-3);
+    }
+  
+    header {
+      padding-block: var(--size-2);
+      background-color: var(--indigo-1);
+    }
+    .back {
+      border: 1px solid transparent;
+      font-size: var(--font-size-2);
+      padding: var(--size-1) var(--size-3);
+      border-radius: var(--radius-2);
+      color: var(--gray-7);
+      background-color: transparent;
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+      cursor: pointer;
+    }
+  </style>
+  </head>
+  <body>
+    <SkipToMain />
+    <header>
+      <div class="mdx-page-container">
+        <a class="back">&larr; Go Back</a>
       </div>
-    </article>
-  </main>
-  <script is:inline>
-    const backElem = document.querySelector(".back");
-    function goBack() {
-      history.back();
-    }
-    if (backElem) {
-      backElem.addEventListener("click", goBack);
-    }
-  </script>
-</body>
+    </header>
+    <main id="main">
+      <article>
+        <PageHeader wrapperClass={"mdx-page-container"} title={frontmatter.title} />
+        <div class="mdx-wrapper mdx">
+          <Content />
+        </div>
+      </article>
+    </main>
+    <script is:inline>
+      const backElem = document.querySelector(".back");
+      function goBack() {
+        history.back();
+      }
+      if (backElem) {
+        backElem.addEventListener("click", goBack);
+      }
+    </script>
+  </body>
+</html>
+
+
+
+
