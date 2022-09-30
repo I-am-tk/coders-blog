@@ -2,7 +2,7 @@
 
 This is my personal blog website. Visit [Coders Blog](https://coders-blog-tk.vercel.app/)
 
-![Coders blog]("/public/coders-blog.png")
+![Coders blog](/public/coders-blog.png)
 
 ## Project Motivation
 
