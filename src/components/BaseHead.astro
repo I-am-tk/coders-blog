@@ -5,7 +5,7 @@ export interface Props {
   image?: string;
 }
 
-const { title = "Coders blog", description, image = "/placeholder-social.jpg" } = Astro.props;
+const { title = "Coders blog", description, image = "/placeholder.jpg" } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -34,6 +34,9 @@ const { title = "Coders blog", description, image = "/placeholder-social.jpg" } 
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Overpass:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Overpass:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  rel="stylesheet"
+/>
