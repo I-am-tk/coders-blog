@@ -5,15 +5,13 @@ export interface FrontMatter {
   description: string;
   tags?: string[];
   publishedAt: string;
-  updatedAt: string | undefined;
+  updatedAt?: string;
+  img?: string;
+  github?: string;
+  live?: string;
 }
 
-export interface FrontMatterWithSlug {
-  title: string;
-  description: string;
-  tags?: string[];
-  publishedAt: string;
-  updatedAt: string | undefined;
+export interface FrontMatterWithSlug extends FrontMatter {
   slug: string;
 }
 

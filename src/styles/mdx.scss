@@ -1,8 +1,9 @@
 .mdx {
+  accent-color: var(--indigo-8);
   & > *:first-child {
     margin-top: 0;
   }
-  --selection-bg: var(--blue-1);
+  --selection-bg: var(--indigo-1);
   --selection-text: var(--gray-8);
   color: var(--gray-7);
   * {
@@ -10,7 +11,7 @@
       background-color: var(--selection-bg);
       color: var(--selection-text);
     }
-    font-weight: var(--font-weight-3);
+    font-weight: 400;
   }
   strong {
     color: var(--gray-8);
@@ -22,31 +23,29 @@
   h5,
   h6 {
     font-size: inherit;
-    font-weight: inherit;
-    color: var(--gray-9);
+    font-weight: 700;
+    color: var(--gray-8);
   }
   a {
     color: var(--indigo-8);
-    text-decoration: none;
-    font-weight: var(--font-weight-5);
+    text-decoration: underline;
+    font-weight: 400;
     &:hover {
       text-decoration: underline;
     }
   }
   h1 {
-    font-weight: var(--font-weight-6);
     margin-top: var(--size-8);
     margin-bottom: var(--size-4);
-    color: var(--gray-9);
+
     font-size: var(--font-size-5);
     line-height: var(--font-lineheight-0);
-    @media (min-width: 481px) {
+    @media (min-width: 480px) {
       font-size: var(--font-size-6);
     }
   }
 
   h2 {
-    font-weight: var(--font-weight-6);
     margin-top: var(--size-5);
     margin-bottom: var(--size-3);
     font-size: var(--font-size-4);
@@ -60,7 +59,6 @@
   }
 
   h3 {
-    font-weight: var(--font-weight-6);
     margin-top: var(--size-4);
     margin-bottom: var(--size-2);
     font-size: var(--font-size-3);
@@ -71,7 +69,6 @@
   }
 
   h4 {
-    font-weight: var(--font-weight-6);
     margin-top: var(--size-4);
     margin-bottom: var(--size-2);
     font-size: var(--font-size-3);
@@ -82,7 +79,7 @@
   }
   p {
     color: var(--gray-8);
-    font-size: var(--font-size-2);
+
     margin-top: var(--size-4);
     margin-bottom: var(--size-4);
 
@@ -107,14 +104,14 @@
   }
 
   :where(li)::marker {
-    color: var(--gray-5);
+    color: var(--indigo-3);
   }
 
   li {
     margin-top: var(--size-1);
     margin-bottom: var(--size-1);
-    font-size: 0.95em;
     color: var(--gray-8);
+    font-size: 0.9em;
   }
   li {
     padding-left: var(--size-2);
@@ -177,10 +174,10 @@
   pre,
   samp {
     font: inherit;
-    font-family: "input mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-      Liberation Mono, Courier New, monospace;
+    font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono,
+      Courier New, monospace;
     border: 1px solid var(--gray-4);
-    font-weight: var(--font-weight-4);
+    font-weight: 400;
   }
 
   small {
@@ -213,11 +210,12 @@
 
   // does this really work
   code:not(pre code) {
-    background-color: var(--gray-1);
+    background-color: white;
     display: inline-block;
     padding-inline: 0.5ch;
     border-radius: var(--radius-2);
-    font-size: 0.7em;
+    border-color: var(--gray-4);
+    font-size: 0.75em;
     font-weight: 400;
   }
 
@@ -232,7 +230,6 @@
       padding-block: var(--size-2);
       background-color: var(--gray-1);
       color: var(--gray-8);
-      // background-color: hsl(220, 16%, 30%);
       font-weight: 400;
     }
     code {
@@ -242,9 +239,12 @@
       display: block;
       border-width: 0;
       border-radius: var(--radius-2);
-      font-family: "fira code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         Liberation Mono, Courier New, monospace;
-      font-size: 16px;
+      font-size: 14px;
+      @media (min-width: 480px) {
+        font-size: 0.75em;
+      }
       // line-height: 1.7rem;
       line-height: 28px;
       overflow-x: auto;
@@ -258,19 +258,6 @@
       }
     }
   }
-  // .remark-code-title {
-  //   padding: var(--size-2) var(--size-4);
-  //   // font-weight: 500;
-  //   color: var(--text);
-  //   // @include text-sm;
-  //   font-family: "input mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-  //     Liberation Mono, Courier New, monospace;
-  //   background-color: var(--code-title-bg);
-  //   margin-bottom: 0;
-  //   & + pre {
-  //     margin-top: 0;
-  //   }
-  // }
 
   table {
     text-indent: 0;
@@ -293,13 +280,4 @@
     font-size: 0.95rem;
     border-bottom: 1px solid var(--text-dark);
   }
-
-  // ul[class="contains-task-list"] {
-  //   list-style-type: none;
-  //   padding-left: var(--size-2);
-  //   position: relative;
-  //   input[type="checkbox"] {
-  //     margin-right: var(--size-2);
-  //   }
-  // }
 }

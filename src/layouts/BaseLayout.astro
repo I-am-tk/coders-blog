@@ -1,13 +1,12 @@
 ---
 import "@styles/global.scss";
+import "@styles/variables.scss";
 import BaseHead from "@components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "config";
 import Header from "@components/Header/Header.astro";
 import Footer from "@components/Footer/Footer.astro";
 import SkipToMain from "@components/SkipToMain.astro";
 ---
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +30,8 @@ import SkipToMain from "@components/SkipToMain.astro";
     <SkipToMain />
     <Header />
     <main>
-    <slot />
-  </main>
-  <Footer />
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

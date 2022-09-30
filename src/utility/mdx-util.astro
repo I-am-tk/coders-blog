@@ -35,4 +35,21 @@ export async function getMDXBySlug(type: MDXPathKey, slug: string): Promise<MDXW
   if (!mdx) throw new Error(`Couldn't find mdx for slug: ${slug}`);
   return mdx;
 }
+
+export async function getAllTags(type: MDXPathKey) {
+  const mdxs = await getMDXByType(type);
+  const setOfTags = new Set(
+    mdxs.map(({ frontmatter }) => (frontmatter.tags !== undefined ? frontmatter.tags : [])).flat()
+  );
+  const tags = [...setOfTags];
+  return tags;
+}
+
+export function getAllTagsFromMDX(mdxs: MDXWithSlug[]) {
+  const setOfTags = new Set(
+    mdxs.map(({ frontmatter }) => (frontmatter.tags !== undefined ? frontmatter.tags : [])).flat()
+  );
+  const tags = [...setOfTags];
+  return tags;
+}
 ---

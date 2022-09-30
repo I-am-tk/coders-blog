@@ -4,11 +4,13 @@ import LatestPosts from "@components/Post/LatestPosts.astro";
 import PopularPosts from "@components/Post/PopularPosts.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PostTags from "@components/Post/PostTags.astro";
-import { getMDXByType } from "src/utility/mdx-util.astro";
+import { getMDXByType, getAllTagsFromMDX } from "src/utility/mdx-util.astro";
 
 const posts = await getMDXByType("post");
+
 const latestPostFrontMatters = posts.slice(0, 6).map((post) => post.frontmatter);
 const popularPostFrontMatters = latestPostFrontMatters;
+const tags = getAllTagsFromMDX(posts);
 ---
 
 <style lang="scss">
@@ -35,7 +37,7 @@ const popularPostFrontMatters = latestPostFrontMatters;
   <div class="main-content container">
     <LatestPosts frontmatters={latestPostFrontMatters} />
     <div class="side-section">
-      <PostTags />
+      <PostTags tags={tags} />
       <PopularPosts frontmatters={popularPostFrontMatters} />
     </div>
   </div>

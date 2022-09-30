@@ -1,24 +1,16 @@
 ---
 import BaseHead from "@components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "config";
-import "src/styles/global.scss";
+import "@styles/global.scss";
+import "@styles/variables.scss";
 import "@styles/mdx.scss";
 import PageHeader from "@components/PageHeader.astro";
 import type { MDXWithSlug } from "src/types";
 export type Props = MDXWithSlug;
 const { Content, frontmatter } = Astro.props;
 import SkipToMain from "@components/SkipToMain.astro";
-// import sandpackPkg from "@codesandbox/sandpack-react";
-// const { getSandpackCssText } = sandpackPkg;
-// const cssTextOutput = getSandpackCssText();
+import Footer from "@components/Footer/Footer.astro";
 ---
-
-
-
-<!-- Will add it after fixing sandpack errors -->
-<!-- <style id="sandpack" is:global set:html={cssTextOutput}>
-
-</style> -->
 
 <!DOCTYPE html>
 <html>
@@ -33,16 +25,23 @@ import SkipToMain from "@components/SkipToMain.astro";
         padding-bottom: var(--size-10);
         /* margin-inline: auto; */
         max-width: var(--size-content-3);
+        padding-inline: var(--size-4);
       }
-    
+
       header {
         padding-block: var(--size-2);
-        background-color: var(--indigo-1);
+        background: var(--indigo-1);
+      }
+      .mdx-header {
+        padding-top: var(--size-10);
+        background: var(--indigo-1);
+        padding-bottom: var(--size-4);
+        font-size: var(--font-size-3);
       }
       .back {
         border: 1px solid transparent;
         font-size: var(--font-size-2);
-        padding: var(--size-1) var(--size-3);
+        padding: var(--size-1);
         border-radius: var(--radius-2);
         color: var(--gray-7);
         background-color: transparent;
@@ -51,6 +50,15 @@ import SkipToMain from "@components/SkipToMain.astro";
           text-decoration: underline;
         }
         cursor: pointer;
+      }
+      .title {
+        color: var(--gray-8);
+        margin-bottom: var(--size-4);
+        font-size: var(--font-size-5);
+        line-height: var(--font-lineheight-0);
+        @media (min-width: 481px) {
+          font-size: var(--font-size-6);
+        }
       }
     </style>
   </head>
@@ -63,12 +71,17 @@ import SkipToMain from "@components/SkipToMain.astro";
     </header>
     <main id="main">
       <article>
-        <PageHeader wrapperClass={"mdx-page-container"} title={frontmatter.title} />
+        <header class="mdx-header">
+          <div class={"mdx-page-container"}>
+            <h1 class="title">{frontmatter.title}</h1>
+          </div>
+        </header>
         <div class="mdx-wrapper mdx">
           <Content />
         </div>
       </article>
     </main>
+    <Footer />
     <script is:inline>
       const backElem = document.querySelector(".back");
       function goBack() {
@@ -80,7 +93,3 @@ import SkipToMain from "@components/SkipToMain.astro";
     </script>
   </body>
 </html>
-
-
-
-

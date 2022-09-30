@@ -1,0 +1,19 @@
+---
+title: "useSsr"
+description: "Custom hook to check wether it is server or client"
+publishedDate: "August 08 2022"
+tags: ["react"]
+---
+
+```tsx
+function useSsr() {
+  const isDOM = typeof window !== "undefined" && window.document && window.document.documentElement;
+
+  return {
+    isBrowser: isDOM,
+    isServer: !isDOM,
+  };
+}
+
+export default useSsr;
+```

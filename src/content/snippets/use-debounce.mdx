@@ -1,17 +1,30 @@
 ---
-title: "Throttle"
-description: "Throttle on the input"
+title: "Debounce"
+description: "Debounce on the input"
 publishedDate: "August 08 2022"
-tags: ["JS", "React"]
+tags: ["js"]
 ---
 
 ```js
-function throttle(fn, interval = 1) {
-  if (id) {
-    clearTimeout(id);
-  }
-  const id = setTimeout(() => {
-    fn();
-  }, interval * 1000);
+function debounce(func, wait, immediate) {
+  var timeout;
+
+  return function executedFunction() {
+    var context = this;
+    var args = arguments;
+
+    var later = function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+
+    var callNow = immediate && !timeout;
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(later, wait);
+
+    if (callNow) func.apply(context, args);
+  };
 }
 ```

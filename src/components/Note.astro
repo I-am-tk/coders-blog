@@ -1,0 +1,54 @@
+<div class="note">
+  <div class="bar"></div>
+  <div class="note-content-wrapper">
+    <div class="svg-wrapper">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+        <path
+          d="M8,0a8,8,0,1,0,8,8A8,8,0,0,0,8,0Zm.8,12H7.2V7.2H8.8Zm0-6.4H7.2V4H8.8Z"
+          fill="currentColor"></path>
+      </svg>
+    </div>
+    <div class="note-content"><slot /></div>
+  </div>
+</div>
+
+<style>
+  svg {
+    color: var(--indigo-7);
+    width: var(--size-4);
+    height: var(--size-4);
+  }
+  .note {
+    background-color: var(--gray-0);
+    border-radius: var(--radius-2);
+    display: flex;
+    overflow: hidden;
+    margin-top: var(--size-4);
+    margin-bottom: var(--size-8);
+  }
+  .svg-wrapper {
+    flex-shrink: 0;
+    padding-top: var(--size-1);
+  }
+  .bar {
+    width: var(--size-1);
+    background-color: var(--indigo-4);
+    flex-shrink: 0;
+  }
+  .note-content-wrapper {
+    padding: var(--size-3);
+    gap: var(--size-3);
+    display: flex;
+  }
+  .note-content {
+    margin: 0;
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-3);
+  }
+  .note-content > :global(*:first-child) {
+    margin-top: 0px;
+  }
+  .note-content > :global(*:last-child) {
+    margin-bottom: 0px;
+  }
+</style>

@@ -5,7 +5,7 @@ import { SITE_TITLE } from "config";
 
 <style>
   header {
-    height: var(--size-8);
+    min-height: var(--size-8);
     display: flex;
     align-items: center;
     background: var(--indigo-1);
@@ -15,7 +15,8 @@ import { SITE_TITLE } from "config";
     display: flex;
     width: 100%;
     margin-left: calc(var(--size-2) * -1);
-    gap: var(--size-2);
+    gap: var(--size-0);
+    flex-wrap: wrap;
   }
 </style>
 
@@ -23,10 +24,10 @@ import { SITE_TITLE } from "config";
   <div class="container">
     <nav>
       <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/post/page/1">Post</HeaderLink>
-      <HeaderLink href="/snippet/page/1">Snippet</HeaderLink>
+      <HeaderLink href="/post/page/1">Posts</HeaderLink>
+      <HeaderLink href="/snippet/page/1">Snippets</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
-      <HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
+      <HeaderLink href="/project">Projects</HeaderLink>
     </nav>
   </div>
 </header>

@@ -1,14 +1,17 @@
 ---
 import postTags from "src/content/posts/post-tags";
+
+export type Props = { tags: string[] };
+const { tags } = Astro.props;
 ---
 
 <section>
   <h2 class="section-title">Tags</h2>
   <div class="tags">
     {
-      postTags.map(({ tag }) => (
+      tags.map((tag) => (
         <a href={`/${tag.toLocaleLowerCase()}/1`} class="tag">
-          {tag}
+          {tag.toLowerCase() in postTags ? postTags[tag.toLowerCase()] : tag}
         </a>
       ))
     }
@@ -24,19 +27,21 @@ import postTags from "src/content/posts/post-tags";
 
   .tag {
     background: var(--gray-0);
-    padding: var(--size-2) var(--size-3);
+    padding: var(--size-1) var(--size-2);
     border-radius: var(--radius-2);
     text-decoration: none;
     color: inherit;
-    font-size: var(--font-size-2);
-    background-color: var(--indigo-0);
-    border: 1px solid transparent;
+    border: 1px solid var(--gray-4);
   }
 
   .tag:hover,
   .tag:focus {
-    outline: 1px solid var(--gray-4);
     background-color: var(--indigo-7);
     color: var(--gray-0);
+  }
+
+  .tag:focus {
+    outline: 2px solid var(--indigo-3);
+    outline-offset: 2px;
   }
 </style>

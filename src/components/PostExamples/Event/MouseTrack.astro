@@ -1,0 +1,38 @@
+<div id="trackpad">
+  <div id="cursor"></div>
+</div>
+
+<style>
+  #trackpad {
+    height: 200px;
+    background-color: var(--gray-1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius-2);
+    position: relative;
+  }
+  #cursor {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: var(--indigo-5);
+    position: absolute;
+  }
+</style>
+
+<script is:inline>
+  const size = 50;
+  const trackpadElement = document.querySelector("#trackpad");
+  const cursorElement = document.querySelector("#cursor");
+  trackpadElement.addEventListener("pointermove", (ev) => {
+    const boundingRect = trackpadElement.getBoundingClientRect();
+    let left = Math.max(0, ev.clientX - boundingRect.left - size / 2);
+    left = Math.min(boundingRect.width - size, left);
+    let top = Math.max(0, ev.clientY - boundingRect.top - size / 2);
+    top = Math.min(boundingRect.height - size, top);
+    cursorElement.style.left = `${left}px`;
+    cursorElement.style.top = `${top}px`;
+  });
+</script>

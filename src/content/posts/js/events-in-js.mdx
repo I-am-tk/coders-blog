@@ -1,0 +1,277 @@
+---
+title: "Events in JavaScript"
+description: "Events are the pillar to make a webpage interactive and more fun. In this article, we will deep dive into events."
+publishDate: "Jul 02 2022"
+tags: ["js"]
+draft: true
+---
+
+## Introduction
+
+In the case of the Web, events are fired inside the browser window, and tend to be attached to a specific item that resides in it. This might be a single element, a set of elements, the HTML document loaded in the current tab, or the entire browser window. There are many different types of events that can occur which the broswer tells you about so your code can react to them.
+
+There are many different types of events that can occur.
+
+For example:
+
+- The user selects, clicks, or hovers the cursor over a certain element.
+- The user chooses a key on the keyboard.
+- The user resizes or closes the browser window.
+- A web page finishes loading.
+- A form is submitted.
+- A video is played, paused, or finishes.
+- An error occurs.
+
+# Event Handler
+
+To react to an event, you attach an **event handler** to it. This is a block of code (usually a JavaScript function that you as a programmer create) that runs when the event fires. When such a block of code is defined to run in response to an event, we say we are **registering an event handler**. Note: Event handlers are sometimes called **event listeners** — they are pretty much interchangeable for our purposes, although strictly speaking, they work together. The listener listens out for the event happening, and the handler is the code that is run in response to it happening.
+
+import Note from "@components/Note.astro";
+
+<Note>
+
+Web events are not part of the core JavaScript language — they are defined as part of the APIs
+built into the browser.
+
+</Note>
+
+## Event Object
+
+## Attach Event Handler
+
+The recommended mechanism for adding event handlers in web pages is the [addEventListener()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method.
+
+<Note>
+
+**Note:** The `addEventListener()` method is the recommended way to register an event listener. The benefits are as follows:
+
+- It allows adding more than one handler for an event. This is particularly useful for libraries, JavaScript modules, or any other kind of code that needs to work well with other libraries or extensions.
+- In contrast to using an onXYZ property, it gives you finer-grained control of the phase when the listener is activated (capturing vs. bubbling).
+- It works on any event target supports events (such as XMLHttpRequest), not just HTML or SVG elements.
+
+</Note>
+
+### Syntax
+
+```
+object.addEventListener(event type, listener);
+object.addEventListener(event type, listener, options);
+object.addEventListener(event type, listener, useCapture);
+```
+
+**Event type** could be any event that the target object supports. See all the [events](https://developer.mozilla.org/en-US/docs/Web/Events).
+
+**Listner** must be `null`, an `object with a handleEvent()` method, or a `JavaScript function` that will be called whenever the specified event is delivered to the target object. If the function or object is already in the list of event listeners for this target, the function or object is not added a second time.
+
+<Note>
+**Note**: If a particular anonymous function is in the list of event listeners registered for a certain target, and then later in the code, an identical anonymous function is given in an addEventListener call, the second function will also be added to the list of event listeners for that target.
+
+Indeed, anonymous functions are not identical even if defined using the same unchanging source-code called repeatedly, even if in a loop.
+
+</Note>
+
+`useCapture` a boolean value indicating whether events of this type will be dispatched to the registered listener before being dispatched to any EventTarget beneath it in the DOM tree. The event propagation mode determines the order in which elements receive the event. See [DOM Level 3](https://www.w3.org/TR/DOM-Level-3-Events/#event-flow) Events and [JavaScript Event order](https://www.quirksmode.org/js/events_order.html#link4) for a detailed explanation. If not specified, useCapture defaults to false.
+
+<Note>
+  **Note**: For event listeners attached to the event target, the event is in the target phase,
+  rather than the capturing and bubbling phases. Event listeners in the capturing phase are called
+  before event listeners in any non-capturing phases.
+</Note>
+
+**Option** is an object that specifies characteristics about the event listener with the following properties:
+
+```ts
+interface Option {
+  capture: boolean;
+  once: boolean;
+  passive: boolean;
+  signal: AbortSignal;
+}
+```
+
+`once` : A boolean value indicating that the listener should be invoked at most once after being added. If true, the listener would be automatically removed when invoked. If not specified, defaults to false.
+
+`capture` : A boolean value indicating that events of this type will be dispatched to the registered listener before being dispatched to any EventTarget beneath it in the DOM tree. If not specified, defaults to false.
+
+`passive` : A boolean value that, if `true`, indicates that the function specified by listener will never call `preventDefault()`. If a passive listener does call `preventDefault()`, the user agent will do nothing other than generate a console warning. If not specified, defaults to `false` - except that in browsers other than Safari and Internet Explorer, defaults to true for the wheel, mousewheel, touchstart and touchmove events. See Improving scrolling performance with passive listeners to learn more.
+
+`signal` : An AbortSignal. The listener will be removed when the given AbortSignal object's `abort()` method is called. If not specified, no AbortSignal is associated with the listener.
+
+### Event Listner
+
+> **Listner** must be `null`, an `object with a handleEvent()` method, or a `JavaScript function` that will be called whenever the specified event is delivered to the target object.
+
+Event listeners only take one argument, the Event Object, which is automatically passed to the listener, and the return value is ignored.
+
+#### With Function
+
+```js
+function handleClick() {
+  // respond to the event here
+}
+element.addEventListener("click", handleClick);
+```
+
+#### With Anonomous Function
+
+```js
+element.addEventListener("click", function () {
+  // respond to the event here
+});
+```
+
+#### With Arrow Function
+
+```js
+const handleClick = () => {
+  // respond to the event here
+};
+element.addEventListener("click", handleClick);
+```
+
+or
+
+```js
+element.addEventListener("click", () => {
+  // respond to the event here
+});
+```
+
+#### With Object
+
+Object must have the handleEvent() method to handle all the events.
+
+```js
+const Something = function (element) {
+  this.handleEvent = function (event) {
+    switch (event.type) {
+      case "click":
+        // some code here…
+        break;
+      case "dblclick":
+        // some code here…
+        break;
+    }
+  };
+
+  // Note that the listeners in this case are |this|, not this.handleEvent
+  element.addEventListener("click", this, false);
+  element.addEventListener("dblclick", this, false);
+
+  // You can properly remove the listeners
+  element.removeEventListener("click", this, false);
+  element.removeEventListener("dblclick", this, false);
+};
+const s = new Something(document.body);
+```
+
+## Remove Event Handler
+
+The `removeEventListener()` removes an event listener previously registered with `addEventListener()` from the target. The event listener to be removed is identified using a combination of the event type, the event listener function itself, and various optional options that may affect the matching process.
+
+Calling removeEventListener() with arguments that do not identify any currently registered event listener on the EventTarget has no effect.
+
+<Note>
+  **Note**: If a listener is registered twice, one with the capture flag set and one without, you
+  must remove each one separately. Removal of a capturing listener does not affect a non-capturing
+  version of the same listener, and vice versa.
+</Note>
+
+### Syntax
+
+```
+removeEventListener(type, listener);
+removeEventListener(type, listener, options);
+removeEventListener(type, listener, useCapture);
+```
+
+Event listeners can also be removed by passing an AbortSignal to an addEventListener() and then later calling abort() on the controller owning the signal.
+
+The strange thing here is that in `option` only `capture` property is available. The rest properties of options like `passive`, `once` that is available in `addEventListener` is not counted. However having them in option doesn't alter the result.
+
+Conside the following:
+
+```js
+// useCapture is set to true
+element.addEventListener("click", handleClick, true);
+
+// 🚫 Fails
+element.removeEventListener("click", handleClick, false);
+
+// ✔️ Succeds
+element.removeEventListener("click", handleClick, true);
+```
+
+Now consider this:
+
+```js
+element.addEventListener("mousedown", handleMouseDown, { passive: true });
+
+// capture property or the useCapture option should be false to match.
+// only capture option will cheked wether it is a match
+
+// ✔️ Succeeds
+element.removeEventListener("mousedown", handleMouseDown, { passive: true });
+
+// ✔️ Succeeds
+element.removeEventListener("mousedown", handleMouseDown, { capture: false });
+
+// 🚫 Fails
+element.removeEventListener("mousedown", handleMouseDown, { capture: true });
+
+// ✔️ Succeeds
+element.removeEventListener("mousedown", handleMouseDown, { passive: false });
+
+// ✔️ Succeeds
+element.removeEventListener("mousedown", handleMouseDown, false);
+
+// 🚫 Fails
+element.removeEventListener("mousedown", handleMouseDown, true);
+```
+
+# An Example
+
+Let's see a simple example taken from [MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#a_simple_example). In the following example, we have a single `<button>`, which when pressed, makes the background change to a random color:
+
+import { BgChange } from "@components/PostExamples/Event";
+
+```html
+<div id="bg-wrapper">
+  <button type="button" id="bg-change-btn">
+    <span> change color </span>
+  </button>
+</div>
+```
+
+The JavaScript looks like so:
+
+```js
+const bgWrapperElement = document.querySelector("#bg-wrapper");
+const bgChangeBtn = document.querySelector("#bg-change-btn");
+function random(number) {
+  return Math.floor(Math.random() * (number + 1));
+}
+
+bgChangeBtn.addEventListener("click", () => {
+  const randomColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+  bgWrapperElement.style.backgroundColor = randomColor;
+});
+```
+
+The output of the above example can be seen below. Try clicking the button:
+
+import Output from "@components/Output.svelte";
+
+<Output>
+  <BgChange />
+</Output>
+
+import MouseTrack from "@components/PostExamples/Event/MouseTrack.astro";
+
+## Here is a task for you
+
+Move element on mouse move.
+
+<Output>
+  <MouseTrack />
+</Output>

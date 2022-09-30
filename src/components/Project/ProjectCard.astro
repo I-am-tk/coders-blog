@@ -1,0 +1,154 @@
+---
+import type { FrontMatterWithSlug } from "src/types";
+import postTagtoTitle from "src/content/posts/post-tags";
+export type Props = { frontmatter: FrontMatterWithSlug };
+const { frontmatter } = Astro.props;
+---
+
+<article>
+  <div class="img-wrapper">
+    <img src={frontmatter.img ?? ""} alt={frontmatter.title} />
+  </div>
+  <div class="project-meta">
+    <header>
+      <h3 class="section-title">
+        <a href="">
+          {frontmatter.title}
+        </a>
+      </h3>
+    </header>
+    <p>{frontmatter.description}</p>
+    {
+      frontmatter.tags && (
+        <div class="tag-wrapper">
+          <h4 class="">Techstack</h4>
+          <ul class="tags">
+            {frontmatter.tags.map((tag) => (
+              <li class="tag">
+                {postTagtoTitle[tag.toLocaleLowerCase()]
+                  ? postTagtoTitle[tag.toLocaleLowerCase()]
+                  : tag}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+    <div class="project-actions">
+      <a href={frontmatter.github ?? ""} target="_blank" rel="noreferer" class="project-link"
+        >Code</a
+      >
+      <a href={frontmatter.live ?? ""} target="_blank" rel="noreferer" class="project-link">Live</a>
+    </div>
+  </div>
+</article>
+
+<style lang="scss">
+  .img-wrapper {
+    --width: 1366;
+    --height: 768;
+    aspect-ratio: calc(var(--width) / var(--height));
+    @media (min-width: 768px) {
+      aspect-ratio: auto;
+      height: 100%;
+      & img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: left;
+      }
+    }
+  }
+  h3 a {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .project-actions {
+    display: flex;
+    gap: var(--size-2);
+    margin-top: var(--size-4);
+  }
+  article {
+    border: 1px solid var(--gray-4);
+    display: grid;
+    /* gap: var(--size-6); */
+    border-radius: var(--radius-2);
+    overflow: hidden;
+    background-color: var(--gray-0);
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 420px;
+      & .project-meta {
+        border-top: 0px;
+        border-left: 1px solid var(--gray-4);
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+  .project-meta {
+    background-color: var(--gray-0);
+    border-top: 1px solid var(--gray-4);
+    padding: var(--size-2) var(--size-4) var(--size-4);
+    border-top-left-radius: var(--radius-2);
+    border-top-right-radius: var(--radius-2);
+  }
+  p {
+    max-width: var(--size-content-3);
+  }
+  article .project-meta h3 {
+    margin-bottom: var(--size-2);
+  }
+
+  h3 + p {
+    margin-bottom: var(--size-4);
+  }
+  .tag-wrapper {
+    margin-top: var(--size-4);
+    h4 {
+      margin-bottom: var(--size-2);
+    }
+  }
+
+  .tags {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    /* grid-template; */
+    flex-wrap: wrap;
+    column-gap: var(--size-2);
+    row-gap: var(--size-2);
+  }
+
+  .tag {
+    background: var(--gray-0);
+    border-radius: var(--radius-2);
+    text-decoration: none;
+    color: var(--gray-7);
+    font-size: 0.8em;
+  }
+
+  .project-link {
+    background: var(--gray-0);
+    padding: var(--size-1) var(--size-2);
+    border-radius: var(--radius-2);
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--gray-4);
+    font-size: var(--font-size-1);
+  }
+
+  .project-link:hover,
+  .project-link:focus {
+    background-color: var(--indigo-7);
+    color: var(--gray-0);
+  }
+
+  .project-link:focus {
+    outline: 2px solid var(--indigo-3);
+    outline-offset: 2px;
+  }
+</style>
