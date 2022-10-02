@@ -1,18 +1,15 @@
-# Coders Blog
-
-This is my personal blog website. Visit [Coders Blog](https://coders-blog-tk.vercel.app/)
+# Codres Blog
 
 ![Coders blog](/public/coders-blog.png)
 
-## Project Motivation
-
-I've always wanted to create a blog or website where I could record the things I learnt. I found some blogs that detailed the process of building a blog website while looking for the best approach. Two of those were my favourites. One was written by Lee Robinson, the other by Josh W. Comeau. The blog website was created using Next and MDX. I then set about making one for myself.
+I've always wanted to create a blog or website where I could record the things I learnt. While looking for the best approach, I found some blogs that detailed the process of building a blog website . Two of those were my favourites. One was written by [Lee Robinson](https://leerob.io/blog/mdx), the other by [Josh W. Comeau](). The blog website was created using Next and MDX. I then set about making one for myself.
 
 ## TechStack
 
 ### Astro
 
 After a few days of effort, I had to write a lot of code to integrate MDX with NextJS because each package has its own advantages. Later came the release of Astro v1. It enables us to create multipage static sites using our preferred framework. It also has an MDX plugin that vastly simplifies using MDX with astro, which makes my life easier. I've seen a number of libraries emerge on a frequent basis. In order to write blogs utilising the latest frameworks, I thought about having a framework-neutral website.
+TechStack
 
 ### MDX
 
@@ -24,4 +21,9 @@ I used Svelte and React instead of Astro components because they cannot be hydra
 
 ### Open Props
 
-It's challenging for me to create a website layout on my own. So I took advantage of the opinionated design tokens from Adam Grill's Open Props.
+It's challenging for me to create a website layout on my own. So I took advantage of the opinionated design tokens from Adam Grill's Open Properties.
+
+## Future Scope
+
+- Implement post views using Firebase Firestore and SSR.
+- Incorporate Sandpack for a live coding environment.
