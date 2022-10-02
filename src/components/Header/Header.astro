@@ -3,31 +3,135 @@ import HeaderLink from "./HeaderLink.astro";
 import { SITE_TITLE } from "config";
 ---
 
-<style>
+<style lang="scss">
   header {
     min-height: var(--size-8);
     display: flex;
     align-items: center;
     background: var(--indigo-1);
+    padding-block: var(--size-4);
   }
 
   nav {
-    display: flex;
-    width: 100%;
+    @media (max-width: 663px) {
+      display: none;
+      position: fixed;
+      inset: 0;
+      margin-left: 0;
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: var(--gray-9);
+        opacity: 0.4;
+      }
+      & > div {
+        padding: var(--size-4);
+        position: absolute;
+        inset: 0;
+        background-color: var(--indigo-2);
+        max-width: min(100%, 300px);
+        display: flex;
+        flex-direction: column;
+        gap: var(--size-2);
+      }
+    }
     margin-left: calc(var(--size-2) * -1);
-    gap: var(--size-0);
-    flex-wrap: wrap;
+    width: 100%;
+    & > div {
+      display: flex;
+      gap: var(--size-1);
+    }
+  }
+  .menu-control {
+    color: var(--gray-8);
+    height: 44px;
+    width: 44px;
+    border: 1px solid var(--gray-5);
+    background-color: transparent;
+    border-radius: var(--radius-2);
+    @media (min-width: 664px) {
+      display: none;
+    }
+  }
+  #close {
+    margin-bottom: var(--size-4);
+  }
+
+  #resume {
+    width: 100%;
+    background-color: var(--gray-8);
+    color: var(--gray-1);
+    margin-top: auto;
+    text-align: center;
+    padding-inline: var(--size-3);
+
+    @media (min-width: 664px) {
+      margin-left: auto;
+      margin-top: 0;
+      width: fit-content;
+    }
   }
 </style>
 
 <header>
   <div class="container">
-    <nav>
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/post/page/1">Posts</HeaderLink>
-      <HeaderLink href="/snippet/page/1">Snippets</HeaderLink>
-      <HeaderLink href="/about">About</HeaderLink>
-      <HeaderLink href="/project">Projects</HeaderLink>
+    <!-- Hamburger menu for smaller screen -->
+    <!-- Download Resume btn -->
+    <button type="button" aria-label="open menu" class="menu-control" id="hamburger">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+      </svg>
+    </button>
+
+    <nav id="primary-nav">
+      <div>
+        <button type="button" aria-label="close menu" class="menu-control" id="close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        <HeaderLink href="/">Home</HeaderLink>
+        <HeaderLink href="/post/page/1">Posts</HeaderLink>
+        <HeaderLink href="/snippet/page/1">Snippets</HeaderLink>
+        <HeaderLink href="/about">About</HeaderLink>
+        <HeaderLink href="/project">Projects</HeaderLink>
+        <a href="" download="tikeswar-naik-resume" class="btn" id="resume">Download Resume</a>
+      </div>
     </nav>
   </div>
 </header>
+
+<script>
+  const menuBtn = document.querySelector<HTMLButtonElement>("#hamburger")!;
+  const closeBtn = document.querySelector<HTMLButtonElement>("#close")!;
+  const nav = document.querySelector<HTMLButtonElement>("#primary-nav")!;
+
+  menuBtn.addEventListener("click", () => {
+    nav.style.display = "block";
+    document.body.style.height = "100vh";
+    document.body.style.overflowY = "hidden";
+  });
+  closeBtn.addEventListener("click", () => {
+    nav.style.display = "";
+    document.body.style.height = "";
+    document.body.style.overflowY = "";
+  });
+</script>

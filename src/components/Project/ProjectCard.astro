@@ -12,7 +12,7 @@ const { frontmatter } = Astro.props;
   <div class="project-meta">
     <header>
       <h3 class="section-title">
-        <a href="">
+        <a href={frontmatter.live ?? ""} target="_blank" rel="noopener noreferrer">
           {frontmatter.title}
         </a>
       </h3>
@@ -35,10 +35,17 @@ const { frontmatter } = Astro.props;
       )
     }
     <div class="project-actions">
-      <a href={frontmatter.github ?? ""} target="_blank" rel="noreferer" class="project-link"
-        >Code</a
-      >
-      <a href={frontmatter.live ?? ""} target="_blank" rel="noreferer" class="project-link">Live</a>
+      <div>
+        <a href={frontmatter.github ?? ""} target="_blank" rel="noreferer" class="project-link"
+          >Code</a
+        >
+        <a href={frontmatter.live ?? ""} target="_blank" rel="noreferer" class="project-link"
+          >Live</a
+        >
+      </div>
+      <div>
+        <a href={`/project/${frontmatter.slug}`} class="project-link">Details</a>
+      </div>
     </div>
   </div>
 </article>
@@ -71,6 +78,7 @@ const { frontmatter } = Astro.props;
     display: flex;
     gap: var(--size-2);
     margin-top: var(--size-4);
+    justify-content: space-between;
   }
   article {
     border: 1px solid var(--gray-4);

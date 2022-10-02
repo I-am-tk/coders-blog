@@ -83,3 +83,24 @@ h6 {
   margin-inline: auto;
   padding-inline: var(--size-4);
 }
+
+.btn {
+  background: var(--gray-0);
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-2);
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--gray-4);
+  display: inline-block;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--indigo-7);
+  color: var(--gray-0);
+}
+
+.btn:focus {
+  outline: 2px solid var(--indigo-3);
+  outline-offset: 2px;
+}

@@ -6,6 +6,11 @@ import { MDXWithSlug } from "src/types";
 import { getMDXByType } from "src/utility/mdx-util.astro";
 
 const projects = await getMDXByType("project");
+const sortedProjects = projects.sort((project1, project2) => {
+  const d1: number = new Date(project1.frontmatter.publishedAt).getTime();
+  const d2: number = new Date(project2.frontmatter.publishedAt).getTime();
+  return d2 - d1;
+});
 ---
 
 <style lang="scss">
@@ -26,7 +31,7 @@ const projects = await getMDXByType("project");
     <div class="container">
       <ul>
         {
-          projects.map(({ frontmatter }) => (
+          sortedProjects.map(({ frontmatter }) => (
             <li>
               <ProjectCard frontmatter={frontmatter} />
             </li>

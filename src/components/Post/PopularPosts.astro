@@ -16,7 +16,7 @@ const { frontmatters } = Astro.props;
       ))
     }
   </div>
-  <a class="show-all" href={`/post/page/1`}>Show All Posts</a>
+  <a class="show-all btn" href={`/post/page/1`}>Show All Posts</a>
 </section>
 
 <style>
@@ -62,21 +62,6 @@ const { frontmatters } = Astro.props;
   }
 
   .show-all {
-    display: inline-block;
     margin-top: var(--size-2);
-    border: 1px solid var(--gray-4);
-    padding-block: var(--size-1);
-    padding-inline: var(--size-2);
-    background-color: var(--gray-0);
-  }
-  .show-all:hover,
-  .show-all:focus {
-    background-color: var(--indigo-6);
-    color: var(--gray-0);
-    border: 1px solid var(--gray-4);
-  }
-  .show-all:focus {
-    outline: 2px solid var(--indigo-3);
-    outline-offset: 1px;
   }
 </style>

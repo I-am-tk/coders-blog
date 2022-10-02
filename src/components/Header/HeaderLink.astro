@@ -5,40 +5,22 @@ const { href, class: className, ...props } = Astro.props;
 const isActive = href === Astro.url.pathname;
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a href={href} class:list={[className, "btn", { active: isActive }]} {...props}>
   <slot />
 </a>
 
 <style lang="scss">
-  a {
+  a.btn {
     color: var(--gray-7);
     text-decoration: none;
-    font-size: var(--font-size-1);
-    transition: color 0.3s;
-    padding: var(--size-1);
+    padding-inline: var(--size-2);
     border: 1px solid transparent;
     border-radius: var(--radius-2);
-    @media (min-width: 480px) {
-      & {
-        font-size: var(--font-size-2);
-        padding-inline: var(--size-2);
-      }
-    }
+    background-color: transparent;
   }
 
   a.active {
-    font-weight: 700;
-    color: var(--gray-8);
-  }
-
-  a:where(:not(.active)):where(:hover) {
-    color: var(--gray-8);
-    text-decoration: underline;
-  }
-
-  a:focus-within {
-    background-color: var(--gray-0);
-    color: var(--gray-8);
-    text-decoration: none;
+    font-weight: bold;
+    color: var(--indigo-8);
   }
 </style>

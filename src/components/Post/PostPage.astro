@@ -17,21 +17,11 @@ const { page, pageTitle } = Astro.props;
     & > li + li {
       margin-top: var(--size-4);
     }
-    // min-width: var(--size-content-2);
-    // & > li {
-    //   flex-basis: 33ch;
-    //   flex-grow: 1;
-    // }
   }
   .prev,
   .next {
-    border: 1px solid var(--gray-4);
-    padding: var(--size-2) var(--size-3);
-    border-radius: var(--radius-2);
-    display: inline-block;
     text-decoration: none;
-    color: inherit;
-    width: 120px;
+    width: 100px;
     text-align: center;
   }
   .next {
@@ -40,6 +30,7 @@ const { page, pageTitle } = Astro.props;
   .page-nav {
     display: flex;
     margin-top: var(--size-6);
+    align-items: center;
   }
   .page-number {
     text-align: center;
@@ -66,15 +57,20 @@ const { page, pageTitle } = Astro.props;
     {
       page.lastPage > 1 && (
         <div class="page-nav">
-          <a href={page.url.prev} class:list={["prev", { disabled: page.url.prev === undefined }]}>
+          <a
+            href={page.url.prev}
+            class:list={(["prev", "btn"], { disabled: page.url.prev === undefined })}
+          >
             Previous
           </a>
 
           <p class="page-number">
             {page.currentPage}/{page.lastPage}
           </p>
-
-          <a href={page.url.next} class:list={["next", { disabled: page.url.next === undefined }]}>
+          <a
+            href={page.url.next}
+            class:list={(["next", "btn"], { disabled: page.url.next === undefined })}
+          >
             Next
           </a>
         </div>

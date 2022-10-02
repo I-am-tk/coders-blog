@@ -38,18 +38,11 @@ import Footer from "@components/Footer/Footer.astro";
         padding-bottom: var(--size-4);
         font-size: var(--font-size-3);
       }
-      .back {
-        border: 1px solid transparent;
-        font-size: var(--font-size-2);
-        padding: var(--size-1);
-        border-radius: var(--radius-2);
+      a.back {
         color: var(--gray-7);
-        background-color: transparent;
-        &:hover,
-        &:focus {
-          text-decoration: underline;
-        }
         cursor: pointer;
+        background-color: transparent;
+        border-color: transparent;
       }
       .title {
         color: var(--gray-8);
@@ -66,7 +59,7 @@ import Footer from "@components/Footer/Footer.astro";
     <SkipToMain />
     <header>
       <div class="mdx-page-container">
-        <a class="back">&larr; Go Back</a>
+        <a class="btn back">&larr; Go Back</a>
       </div>
     </header>
     <main id="main">

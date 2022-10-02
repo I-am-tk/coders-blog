@@ -10,7 +10,7 @@ const { tags } = Astro.props;
   <div class="tags">
     {
       tags.map((tag) => (
-        <a href={`/${tag.toLocaleLowerCase()}/1`} class="tag">
+        <a href={`/${tag.toLocaleLowerCase()}/1`} class="btn">
           {tag.toLowerCase() in postTags ? postTags[tag.toLowerCase()] : tag}
         </a>
       ))
@@ -23,25 +23,5 @@ const { tags } = Astro.props;
     display: flex;
     flex-wrap: wrap;
     gap: var(--size-2);
-  }
-
-  .tag {
-    background: var(--gray-0);
-    padding: var(--size-1) var(--size-2);
-    border-radius: var(--radius-2);
-    text-decoration: none;
-    color: inherit;
-    border: 1px solid var(--gray-4);
-  }
-
-  .tag:hover,
-  .tag:focus {
-    background-color: var(--indigo-7);
-    color: var(--gray-0);
-  }
-
-  .tag:focus {
-    outline: 2px solid var(--indigo-3);
-    outline-offset: 2px;
   }
 </style>
