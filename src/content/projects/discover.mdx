@@ -8,7 +8,7 @@ github: "https://github.com/I-am-tk/Discover"
 live: "https://discover-social.vercel.app/"
 ---
 
-A photo-sharing web application.
+A photo-sharing web application
 
 ![Discover](/discover.png)
 
@@ -18,10 +18,9 @@ After learning about backend development, I wanted to create a full-stack applic
 
 Users on the photo-sharing website can create, edit, and delete posts. While following other users, one can also like or comment on their postings.
 
-- Users can create, edit, and remove posts as well as like, comment, and share other people's posts. In addition to that, a user can follow another user.
-- Implemented Authentication using Firebase Auth and used Firestore and Firebase Storage for storing user post data and images.
-- Integrated TanstackQuery for managing server-side state. Upon mutation, it re-fetches the data from the server.
-- Implemented Real-time updates of likes and comments by subscribing to the document in Firestore.
+- Users can perform CRUD operations on posts as well as like, comment, and share other people's posts. In addition to that, a user can follow another user.
+- Implemented Authentication and Real-time updates of likes and comments using Firebase Auth and Firestore.
+- Integrated TanstackQuery for caching server-side data and deduping multiple requests for the same data into a single one.
 
 ## TechStack
 
