@@ -2,13 +2,14 @@
 import SnippetPage from "@components/Snippet/SnippetPage.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import type { GetStaticPaths, Page } from "astro";
+import { SNIPPETS_PER_PAGE } from "config";
 import type { MDXWithSlug } from "src/types";
 import { getMDXByType } from "src/utility/mdx-util.astro";
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
   const snippets = await getMDXByType("snippet");
 
-  return paginate(snippets, { pageSize: 12 });
+  return paginate(snippets, { pageSize: SNIPPETS_PER_PAGE });
 };
 
 export type Props = { page: Page<MDXWithSlug> };

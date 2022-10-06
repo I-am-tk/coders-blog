@@ -5,10 +5,11 @@ import PopularPosts from "@components/Post/PopularPosts.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PostTags from "@components/Post/PostTags.astro";
 import { getMDXByType, getAllTagsFromMDX } from "src/utility/mdx-util.astro";
+import { POPULAR_POSTS_COUNT } from "config";
 
 const posts = await getMDXByType("post");
 
-const latestPostFrontMatters = posts.slice(0, 6).map((post) => post.frontmatter);
+const latestPostFrontMatters = posts.slice(0, POPULAR_POSTS_COUNT).map((post) => post.frontmatter);
 const popularPostFrontMatters = latestPostFrontMatters;
 const tags = getAllTagsFromMDX(posts);
 ---
